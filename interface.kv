@@ -5,9 +5,14 @@ ScreenManager:
     TelaLogado:
     TelaEsqueceuSenha:
 
+
 <MinhaTopBar>:
     title: "Meu Aplicativo"
-    right_action_items: [["logout", lambda x: root.callback(x)]]
+    right_action_items: [["logout", lambda x: root.funcaoLogout(x)]]
+    left_action_items: [["help-box", lambda x: root.funcaoMenu(x)]]
+
+    
+        
 
 <Texto@MDLabel>:
     font_name: "./fonts/bebas/Bebas-Regular.ttf"
@@ -43,7 +48,6 @@ ScreenManager:
 
 <TelaPrincipal>
     name: "tela_principal"
-
     MDFlatButton:
         markup: True
         text:'[u][size=16]Esqueceu sua senha?[/size][/u]'

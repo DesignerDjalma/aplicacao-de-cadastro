@@ -1,5 +1,6 @@
 ScreenManager:
     TelaPrincipal:
+    TelaCadastro:
 
 <Texto@MDLabel>:
     font_name: "./bebas/Bebas-Regular.ttf"
@@ -34,6 +35,8 @@ ScreenManager:
 
 
 <TelaPrincipal>
+    name: "tela_principal"
+
     MDBoxLayout:
         orientation: "vertical"
         # Semrpe no Topo
@@ -94,10 +97,15 @@ ScreenManager:
                     BotaoPadrao:
                         pos_hint: {"center_x": .25, "center_y": .5}
                         text: "     Login     "
+
                     
                     BotaoPadrao:
                         pos_hint: {"center_x": .75, "center_y": .5}
-                        text: "Registra-se"           
+                        text: "Registra-se"
+                        on_release:
+                            app.root.current = "tela_cadastro"
+                            app.root.transition.direction = "left"
+
 
         MDLabel:     
             markup: True
@@ -107,6 +115,8 @@ ScreenManager:
             text_color: 0, 0, 1, 1
 
 <TelaCadastro>
+    name: "tela_cadastro"
+
     MDBoxLayout:
         orientation: "vertical"
         # Semrpe no Topo
@@ -118,6 +128,8 @@ ScreenManager:
             font_size: "28sp"
             halign: "center"
 
+        MDLabel:
+
         MDFloatLayout:
             # md_bg_color: 1.0, 0.0, 0.0, 0.2
             size_hint: .8, 1
@@ -125,22 +137,67 @@ ScreenManager:
             pos_hint: {"center_x": .50, "center_y": .50}
 
             MDBoxLayout:
-                # md_bg_color: 0.4, 0.4, 0.4, 1.0
+                # md_bg_color: 0, 1, 0, 0.4
                 orientation:'vertical'
                 size_hint: .9, .1
                 height: 0
+                pos_hint: {"center_x": .5, "center_y": .9000}
                 # Controla a Subida da Caixa
-                pos_hint: {"center_x": .5, "center_y": .500}
 
+                # NOVO USUARIO
                 MDTextField:
                     mode: "rectangle"
-                    hint_text: "Nome de usuário"
-                    
+                    hint_text: "Nome do usuário"
+                Separador:
+                    height: 7
+                TextoErro:
+                    text: "[i]Forneça um nome de usuário válido[/i]"
+                Separador:
+                    height: 8
+
+                # EMAIL
                 MDTextField:
                     mode: "rectangle"  
                     hint_text: "Digite seu e-mail"
-                    password: True
+                Separador:
+                    height: 7
+                TextoErro:
+                    text: "[i]Forneça um e-mail válido[/i]"
+                Separador:
+                    height: 8
 
+                # # EMAIL CONFIRMAÇÃO
+                # MDTextField:
+                #     mode: "rectangle"  
+                #     hint_text: "Confirme seu e-mail"
+                # Separador:
+                #     height: 7
+                # TextoErro:
+                #     text: "[i]Forneça um e-mail válido[/i]"
+                # Separador:
+                #     height: 8
+
+                # SENHA
+                MDTextField:
+                    mode: "rectangle"  
+                    hint_text: "Digite uma senha"
+                Separador:
+                    height: 7
+                TextoErro:
+                    text: "[i]A senha deve contém letras, números e símbolos[/i]"
+                Separador:
+                    height: 8
+
+                # SENHA CONFIRMAÇÃO
+                MDTextField:
+                    mode: "rectangle"  
+                    hint_text: "Confirme sua senha"
+                Separador:
+                    height: 7
+                TextoErro:
+                    text: "[i]As senhas não são identicas.[/i]"
+
+                
                 Separador:
 
                 Centralizador:
@@ -148,15 +205,11 @@ ScreenManager:
                     
                     BotaoPadrao:
                         pos_hint: {"center_x": .25, "center_y": .5}
-                        text: "     Login     "
-                    
+                        text: "     Voltar     "
+                        on_release:
+                            app.root.current = "tela_principal"           
+                            app.root.transition.direction = "right"
+
                     BotaoPadrao:
                         pos_hint: {"center_x": .75, "center_y": .5}
-                        text: "Registra-se"           
-
-        MDLabel:     
-            markup: True
-            text:'[u][size=16]Esqueceu sua senha?[/size][/u]'
-            halign: 'center'
-            theme_text_color: "Custom"
-            text_color: 0, 0, 1, 1
+                        text: "Registra-se"    

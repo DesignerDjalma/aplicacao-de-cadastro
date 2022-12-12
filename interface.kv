@@ -1,4 +1,5 @@
 ScreenManager:
+    TelaLogado:
     TelaCadastroSucesso:
     TelaPrincipal:
     TelaCadastro:
@@ -98,7 +99,9 @@ ScreenManager:
                     BotaoPadrao:
                         pos_hint: {"center_x": .25, "center_y": .5}
                         text: "     Login     "
-
+                        on_release:
+                            app.root.current = "tela_logado"
+                            app.root.transition.direction = "left"
                     
                     BotaoPadrao:
                         pos_hint: {"center_x": .75, "center_y": .5}
@@ -232,6 +235,49 @@ ScreenManager:
         Texto:
             text: "Seu Cadastro foi realizado com sucesso,\npodes voltar ao Menu Principal e\nefetuar o login."
             halign: "center"
+            
+            
+        BotaoPadrao:
+            pos_hint: {"center_x": .5, "center_y": .5}
+            text: "     Voltar     "
+            on_release:
+                app.root.current = "tela_principal"
+                app.root.transition.direction = "right"
+
+        MDLabel:
+            
+
+<TelaLogado>
+    name: "tela_logado"
+    
+    
+    Image:
+        pos_hint: {"center_x": .5 , "center_y": .65}
+        size_hint: .20, .20
+        source: "./user.png"
+    
+    MDLabel:
+        pos_hint: {"center_x": .5, "center_y": .50}
+        text: 'Nome do usuário\ne-mail.do.usuario@gmail.com'
+        halign: 'center'
+
+    MDLabel:
+        pos_hint: {"center_x": .5, "center_y": .400}
+        text: "Você está atualmente ativo no banco de dados."
+        halign: "center"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        # Semrpe no Topo
+        MDTopAppBar:
+            title: "Meu Aplicativo"
+        
+        Texto:
+            text: "Bem-vindo(a)!"
+            font_size: "28sp"
+            halign: "center"
+
+        MDLabel:
             
             
         BotaoPadrao:

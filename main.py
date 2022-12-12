@@ -7,6 +7,8 @@ from kivymd.app import MDApp
 fe = fatorEscala = 1.2
 Window.size = (360*fe, 640*fe)
 
+class TelaLogado(Screen):
+    pass
 
 class TelaCadastroSucesso(Screen):
     pass

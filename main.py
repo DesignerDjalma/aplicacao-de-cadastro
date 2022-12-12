@@ -8,6 +8,9 @@ fe = fatorEscala = 1.2
 Window.size = (360*fe, 640*fe)
 
 
+class TelaCadastroSucesso(Screen):
+    pass
+
 class TelaCadastro(Screen):
     pass
 
@@ -17,7 +20,7 @@ class TelaPrincipal(Screen):
 class MeuAplicativoApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.icon = "./icone-azul.png"
+        self.icon = "./icone-dourado.png"
 
     def build(self):
         return Builder.load_file("./interface.kv")

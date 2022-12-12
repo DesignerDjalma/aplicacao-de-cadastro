@@ -1,0 +1,162 @@
+ScreenManager:
+    TelaPrincipal:
+
+<Texto@MDLabel>:
+    font_name: "./bebas/Bebas-Regular.ttf"
+
+<TextoErro@MDLabel>:
+    markup: True
+    theme_text_color: "Custom"
+    font_size: "12sp"
+    text_color: 1, 0, 0, 1
+
+
+<Centralizador@MDFloatLayout>:
+    # md_bg_color: 0.4, 0.4, 0.4, 1.0
+    size_hint: None, None
+    width: 362
+    height: 60
+    pos_hint: {"center_x": .5, "center_y": .5}
+
+<Separador@MDFloatLayout>:
+    # md_bg_color: 0.4, 0.4, 0.4, 1.0
+    size_hint: None, None
+    width: 362
+    height: 20
+    pos_hint: {"center_x": .5, "center_y": .5}
+
+<BotaoPadrao@MDFillRoundFlatButton>:
+    pos_hint: {"center_x": .5, "center_y": .5}
+    text_color: "white"
+    font_size: "20sp"
+    halign: "center"
+    font_name: "./bebas/Bebas-Regular.ttf"
+
+
+<TelaPrincipal>
+    MDBoxLayout:
+        orientation: "vertical"
+        # Semrpe no Topo
+        MDTopAppBar:
+            title: "Meu Aplicativo"
+        
+        Texto:
+            text: "Tela de Login"
+            font_size: "28sp"
+            halign: "center"
+
+        MDFloatLayout:
+            # md_bg_color: 1.0, 0.0, 0.0, 0.2
+            size_hint: .8, 1
+            height: 0
+            pos_hint: {"center_x": .50, "center_y": .50}
+
+            MDBoxLayout:
+                # md_bg_color: 0.4, 0.4, 0.4, 1.0
+                orientation:'vertical'
+                size_hint: .9, .1
+                height: 0
+                # Controla a Subida da Caixa
+                pos_hint: {"center_x": .5, "center_y": .500}
+
+                # USUARIO
+                MDTextField:
+                    mode: "rectangle"
+                    hint_text: "Usuário"
+                # TEXTO EM BAIXO DO USUARIO
+                Separador:
+                    height: 7
+                TextoErro:
+                    text: "[i]Forneça um usuário válido[/i]"
+                Separador:
+                    height: 8
+
+                # SENHA
+                MDTextField:
+                    mode: "rectangle"  
+                    hint_text: "Senha"
+                    password: True
+                # TEXTO EM BAIXO DA SENHA
+                Separador:
+                    height: 7
+                TextoErro:
+                    text: "[i]Forneça uma usuário válido[/i]"
+                    
+
+                Separador:
+                    height: 8
+
+                Separador:
+
+                Centralizador:
+                    orientation: "horizontal"
+                    
+                    BotaoPadrao:
+                        pos_hint: {"center_x": .25, "center_y": .5}
+                        text: "     Login     "
+                    
+                    BotaoPadrao:
+                        pos_hint: {"center_x": .75, "center_y": .5}
+                        text: "Registra-se"           
+
+        MDLabel:     
+            markup: True
+            text:'[u][size=16]Esqueceu sua senha?[/size][/u]'
+            halign: 'center'
+            theme_text_color: "Custom"
+            text_color: 0, 0, 1, 1
+
+<TelaCadastro>
+    MDBoxLayout:
+        orientation: "vertical"
+        # Semrpe no Topo
+        MDTopAppBar:
+            title: "Meu Aplicativo"
+        
+        Texto:
+            text: "Tela de Cadastro"
+            font_size: "28sp"
+            halign: "center"
+
+        MDFloatLayout:
+            # md_bg_color: 1.0, 0.0, 0.0, 0.2
+            size_hint: .8, 1
+            height: 0
+            pos_hint: {"center_x": .50, "center_y": .50}
+
+            MDBoxLayout:
+                # md_bg_color: 0.4, 0.4, 0.4, 1.0
+                orientation:'vertical'
+                size_hint: .9, .1
+                height: 0
+                # Controla a Subida da Caixa
+                pos_hint: {"center_x": .5, "center_y": .500}
+
+                MDTextField:
+                    mode: "rectangle"
+                    hint_text: "Nome de usuário"
+                    
+                MDTextField:
+                    mode: "rectangle"  
+                    hint_text: "Digite seu e-mail"
+                    password: True
+
+                Separador:
+
+                Centralizador:
+                    orientation: "horizontal"
+                    
+                    BotaoPadrao:
+                        pos_hint: {"center_x": .25, "center_y": .5}
+                        text: "     Login     "
+                    
+                    BotaoPadrao:
+                        pos_hint: {"center_x": .75, "center_y": .5}
+                        text: "Registra-se"           
+
+        MDLabel:     
+            markup: True
+            text:'[u][size=16]Esqueceu sua senha?[/size][/u]'
+            halign: 'center'
+            theme_text_color: "Custom"
+            text_color: 0, 0, 1, 1

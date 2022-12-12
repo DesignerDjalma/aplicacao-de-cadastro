@@ -1,28 +1,27 @@
-from kivymd.app import MDApp
-from kivymd.uix.relativelayout import MDRelativeLayout
-from kivy.core.window import Window
 from kivy.uix.screenmanager import Screen
-from kivy.properties import StringProperty
+from kivy.core.window import Window
+from kivy.lang import Builder
 
-fatorEscala = 1.4
-fe = fatorEscala
+from kivymd.app import MDApp
+
+fe = fatorEscala = 1.2
 Window.size = (360*fe, 640*fe)
 
 
-
-class ClickableTextFieldRound(MDRelativeLayout):
-    text = StringProperty()
-    hint_text = StringProperty()
-    # Here specify the required parameters for MDTextFieldRound:
-    # [...]
+class TelaCadastro(Screen):
+    pass
 
 class TelaPrincipal(Screen):
     pass
 
 class MeuAplicativoApp(MDApp):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.icon = "./icone-azul.png"
+
     def build(self):
-        return 
+        return Builder.load_file("./interface.kv")
 
 
-
-MeuAplicativoApp().run()
+if __name__ == "__main__":
+    MeuAplicativoApp().run()

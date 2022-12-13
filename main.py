@@ -9,7 +9,7 @@ from kivy.metrics import dp
 
 from kivymd.app import MDApp
 
-fe = fatorEscala = 1.2
+fe = fatorEscala = 1.2 # ideal=1.2
 Window.size = (360*fe, 640*fe)
 
 class MinhaTopBar(MDTopAppBar):
@@ -79,7 +79,7 @@ class TelaPrincipal(Screen):
 class MeuAplicativoApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.icon = "./icone-dourado.png"
+        self.icon = "./images/icone-dourado.ico"
 
     def build(self):
         return Builder.load_file("./interface.kv")
@@ -87,3 +87,4 @@ class MeuAplicativoApp(MDApp):
 
 if __name__ == "__main__":
     MeuAplicativoApp().run()
+    

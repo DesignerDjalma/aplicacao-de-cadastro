@@ -11,11 +11,10 @@ ScreenManager:
     right_action_items: [["logout", lambda x: root.funcaoLogout(x)]]
     left_action_items: [["help-box", lambda x: root.funcaoMenu(x)]]
 
-    
-        
 
 <Texto@MDLabel>:
     font_name: "./fonts/bebas/Bebas-Regular.ttf"
+
 
 <TextoErro@MDLabel>:
     markup: True
@@ -31,12 +30,14 @@ ScreenManager:
     height: 60
     pos_hint: {"center_x": .5, "center_y": .5}
 
+
 <Separador@MDFloatLayout>:
     # md_bg_color: 0.4, 0.4, 0.4, 1.0
     size_hint: None, None
     width: 362
     height: 20
     pos_hint: {"center_x": .5, "center_y": .5}
+
 
 <BotaoPadrao@MDFillRoundFlatButton>:
     pos_hint: {"center_x": .5, "center_y": .5}
@@ -59,7 +60,6 @@ ScreenManager:
             app.root.current = "tela_esqueceu_senha"
             app.root.transition.direction = "left"
  
-
     MDBoxLayout:
         orientation: "vertical"
         # Semrpe no Topo
@@ -106,8 +106,6 @@ ScreenManager:
                     height: 7
                 TextoErro:
                     text: "[i]Forneça uma usuário válido[/i]"
-                    
-
                 Separador:
                     height: 8
 
@@ -188,6 +186,7 @@ ScreenManager:
                 MDTextField:
                     mode: "rectangle"  
                     hint_text: "Digite uma senha"
+                    password: True
                 Separador:
                     height: 7
                 TextoErro:
@@ -199,6 +198,7 @@ ScreenManager:
                 MDTextField:
                     mode: "rectangle"  
                     hint_text: "Confirme sua senha"
+                    password: True
                 Separador:
                     height: 7
                 TextoErro:

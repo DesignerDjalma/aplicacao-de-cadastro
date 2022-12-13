@@ -19,8 +19,8 @@ ScreenManager:
 <TextoErro@MDLabel>:
     markup: True
     theme_text_color: "Custom"
-    font_size: "12sp"
     text_color: 1, 0, 0, 1
+    font_size: "12sp"
 
 
 <Centralizador@MDFloatLayout>:
@@ -49,6 +49,7 @@ ScreenManager:
 
 <TelaPrincipal>
     name: "tela_principal"
+    
     MDFlatButton:
         markup: True
         text:'[u][size=16]Esqueceu sua senha?[/size][/u]'
@@ -60,6 +61,13 @@ ScreenManager:
             app.root.current = "tela_esqueceu_senha"
             app.root.transition.direction = "left"
  
+    MDLabel:
+        pos_hint: {"center_x": .5, "center_y": .05}
+        text:'Criado por: Djalma Filho @3Djhey'
+        theme_text_color: "Custom"
+        halign: "center"
+        text_color: 0, 0, 0, 0.25
+
     MDBoxLayout:
         orientation: "vertical"
         # Semrpe no Topo

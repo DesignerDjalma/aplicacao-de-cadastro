@@ -13,7 +13,7 @@ ScreenManager:
 
 
 <Texto@MDLabel>:
-    font_name: "./fonts/bebas/Bebas-Regular.ttf"
+    font_name: "./assets/fonts/bebas/Bebas-Regular.ttf"
 
 
 <TextoErro@MDLabel>:
@@ -44,7 +44,7 @@ ScreenManager:
     text_color: "white"
     font_size: "20sp"
     halign: "center"
-    font_name: "./fonts/bebas/Bebas-Regular.ttf"
+    font_name: "./assets/fonts/bebas/Bebas-Regular.ttf"
 
 
 <TelaPrincipal>
@@ -96,11 +96,13 @@ ScreenManager:
                 MDTextField:
                     mode: "rectangle"
                     hint_text: "Usuário"
+                    id: usuarioInput
                 # TEXTO EM BAIXO DO USUARIO
                 Separador:
                     height: 7
                 TextoErro:
-                    text: "[i]Forneça um usuário válido[/i]"
+                    text: ""
+                    id: usuarioTextoErro
                 Separador:
                     height: 8
 
@@ -113,7 +115,8 @@ ScreenManager:
                 Separador:
                     height: 7
                 TextoErro:
-                    text: "[i]Forneça uma usuário válido[/i]"
+                    text: "[i]Forneça uma senha válida[/i]"
+                    id: senhaTextoErro
                 Separador:
                     height: 8
 
@@ -125,9 +128,8 @@ ScreenManager:
                     BotaoPadrao:
                         pos_hint: {"center_x": .25, "center_y": .5}
                         text: "     Login     "
-                        on_release:
-                            app.root.current = "tela_logado"
-                            app.root.transition.direction = "left"
+                        on_release: root.validarUsuario()
+
                     
                     BotaoPadrao:
                         pos_hint: {"center_x": .75, "center_y": .5}
@@ -238,7 +240,7 @@ ScreenManager:
     Image:
         pos_hint: {"center_x": .509, "center_y": .65}
         size_hint: .23, .23
-        source: "./images/registrado.png"
+        source: "./assets/imagens/tela_cadastro_sucesso/cadastro-sucesso.png"
         canvas.before:
             Color:
                 rgb: 1, .85, .825, 1 
@@ -275,7 +277,7 @@ ScreenManager:
     Image:
         pos_hint: {"center_x": .5 , "center_y": .65}
         size_hint: .20, .20
-        source: "./images/user.png"
+        source: "./assets/imagens/tela_logado/user-profile-picture.png"
     
     MDLabel:
         pos_hint: {"center_x": .5, "center_y": .50}
@@ -315,7 +317,7 @@ ScreenManager:
     Image:
         pos_hint: {"center_x": .509, "center_y": .65}
         size_hint: .23, .23
-        source: "./images/esqueceu-senha.png"
+        source: "./assets/imagens/tela_esqueceu_senha/esqueceu-senha.png"
         canvas.before:
             Color:
                 rgb: 1, .85, .825, 1 

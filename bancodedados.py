@@ -53,12 +53,17 @@ class Processos:
         print(f"Status: {req} | Valor: {req.text}")
     
     @staticmethod
-    def verProcessos() -> None:
-        url = Requisicao.tipo(TipoRequisicao.processos)
+    def verProcessos(tipo: TipoRequisicao = TipoRequisicao.processos) -> None:
+        """Entra na base dos dados e mostra o tipo especificado de dado."""
+        
+        url = Requisicao.tipo(tipo)
         req = requests.get(url)
         procs = json.loads(req.text)
-        if isinstance(procs, list): return False, procs[1:]
-        else: return True, procs
+
+        if isinstance(procs, list):
+            return False, procs[1:]
+        else:
+            return True, procs
         
 
 
@@ -66,12 +71,13 @@ class Processos:
 if __name__ == "__main__":
     
     integridadeBancoDeDados()
-    Processos.novoProcesso(
-        nome="Djalma",
-        denominacao="Sitio",
-        municipio="Belém",
-        situacao="Doação",
-        zee="ZEE",
-        data="HOJE"
-    )
-    Processos.verProcessos()
+    # Processos.novoProcesso(
+    #     nome="Djalma",
+    #     denominacao="Sitio",
+    #     municipio="Belém",
+    #     situacao="Doação",
+    #     zee="ZEE",
+    #     data="HOJE"
+    # )
+    tudo = Processos.verProcessos(TipoRequisicao.geral)
+    print(tudo)

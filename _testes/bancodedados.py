@@ -71,13 +71,5 @@ class Processos:
 if __name__ == "__main__":
     
     integridadeBancoDeDados()
-    # Processos.novoProcesso(
-    #     nome="Djalma",
-    #     denominacao="Sitio",
-    #     municipio="Belém",
-    #     situacao="Doação",
-    #     zee="ZEE",
-    #     data="HOJE"
-    # )
     tudo = Processos.verProcessos(TipoRequisicao.geral)
     print(tudo)

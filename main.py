@@ -1,9 +1,11 @@
-from utils.telas.telaCadastro import TelaCadastro
-from utils.telas.telaCadastroSucesso import TelaCadastroSucesso
-from utils.telas.telaEsqueceuSenha import TelaEsqueceuSenha
-from utils.telas.telaLogado import TelaLogado
-from utils.telas.telaPrincipal import TelaPrincipal
-from utils.widgets.minhaTopBar import MinhaTopBar
+from utils.Components.Telas.telaCadastro import TelaCadastro
+from utils.Components.Telas.telaCadastroSucesso import TelaCadastroSucesso
+from utils.Components.Telas.telaEsqueceuSenha import TelaEsqueceuSenha
+from utils.Components.Telas.telaLogado import TelaLogado
+from utils.Components.Telas.telaPrincipal import TelaPrincipal
+from utils.Components.Widgets.minhaTopBar import MinhaTopBar
+from utils.Components.Telas.telaCarregamento import TelaCarregamento
+from utils.Components.Firedata.firebase import Usuario
 from kivy.core.window import Window
 from kivy.lang import Builder
 from kivymd.app import MDApp
@@ -21,7 +23,14 @@ class MeuAplicativoApp(MDApp):
     def build(self) -> Builder.load_file:
         return Builder.load_file("./interface.kv")
 
+    @staticmethod
+    def cadastrarUsuario(dodosUsuario: dict):
+        users.cadastrarUsuario(dodosUsuario)
+        
+
 
 if __name__ == "__main__":
+    users = Usuario()
     MeuAplicativoApp().run()
     
+

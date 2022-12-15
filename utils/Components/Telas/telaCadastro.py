@@ -15,9 +15,18 @@ class TelaCadastro(Screen):
     _emailValid = False
     _verificarSenha = False
 
+    def enviarDados(self, app):
+        userData = {
+            'username':self.ids.usuarioInputReg.text,
+            'password':self.ids.senhaInputReg.text,
+            'email':self.ids.emailInputReg.text,
+        }
+        app.cadastrarUsuario(dodosUsuario=userData)
+
     def validacaoOk(self):
         print("Validação Okay")
         self.app = MDApp.get_running_app()
+        self.enviarDados(self.app)
         self.app.root.current = "tela_cadastro_sucesso"
         self.app.root.transition.direction = "left" 
 
@@ -26,6 +35,7 @@ class TelaCadastro(Screen):
         self._usuarioValid = False
         self._senhaValid = False
         self._emailValid = False
+        
         self.validarUsuario()
         self.validarSenha()
         self.validarSenhaCheck()

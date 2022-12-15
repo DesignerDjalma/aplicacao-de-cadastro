@@ -94,6 +94,7 @@ ScreenManager:
 
                 # USUARIO
                 MDTextField:
+                    write_tab: False
                     mode: "rectangle"
                     hint_text: "Usuário"
                     id: usuarioInput
@@ -109,6 +110,7 @@ ScreenManager:
 
                 # SENHA
                 MDTextField:
+                    write_tab: False
                     mode: "rectangle"  
                     hint_text: "Senha"
                     password: True
@@ -175,49 +177,60 @@ ScreenManager:
 
                 # NOVO USUARIO
                 MDTextField:
+                    write_tab: False
                     mode: "rectangle"
                     hint_text: "Nome do usuário"
+                    id: usuarioInputReg
                 Separador:
                     height: 7
                 TextoErro:
-                    text: "[i]Forneça um nome de usuário válido[/i]"
+                    text: ""
+                    id: usuarioTextoErroReg
                 Separador:
                     height: 8
 
                 # EMAIL
                 MDTextField:
+                    write_tab: False
                     mode: "rectangle"  
                     hint_text: "Digite seu e-mail"
+                    id: emailInputReg
                 Separador:
                     height: 7
                 TextoErro:
-                    text: "[i]Forneça um e-mail válido[/i]"
+                    text: ""
+                    id: emailTextoErroReg
                 Separador:
                     height: 8
 
                 # SENHA
                 MDTextField:
+                    write_tab: False
                     mode: "rectangle"  
-                    hint_text: "Digite uma senha"
+                    hint_text: "Digite uma senha forte"
                     password: True
+                    id: senhaInputReg
                 Separador:
                     height: 7
                 TextoErro:
-                    text: "[i]A senha deve contém letras, números e símbolos[/i]"
+                    text: ""
+                    id: senhaTextoErroReg
                 Separador:
                     height: 8
 
                 # SENHA CONFIRMAÇÃO
                 MDTextField:
+                    write_tab: False
                     mode: "rectangle"  
                     hint_text: "Confirme sua senha"
                     password: True
+                    id: senhaCheckInputReg
                 Separador:
                     height: 7
                 TextoErro:
-                    text: "[i]As senhas não são identicas.[/i]"
+                    text: ""
+                    id: senhaCheckTextoErroReg
 
-                
                 Separador:
 
                 Centralizador:
@@ -233,9 +246,7 @@ ScreenManager:
                     BotaoPadrao:
                         pos_hint: {"center_x": .75, "center_y": .5}
                         text: "Registra-se" 
-                        on_release:
-                            app.root.current = "tela_cadastro_sucesso"
-                            app.root.transition.direction = "left"  
+                        on_release: root.validarDados()
 
 <TelaCadastroSucesso>
     name: "tela_cadastro_sucesso"

@@ -9,20 +9,17 @@ from kivy.lang import Builder
 from kivymd.app import MDApp
 
 
+window_size, fatorEscala =  (360, 640), 1.2 
+Window.size = tuple(map(lambda x: x*fatorEscala, window_size))
 
-fe = fatorEscala = 1.2 # ideal=1.2
-Window.size = (360*fe, 640*fe)
-
-
-
+ 
 class MeuAplicativoApp(MDApp):
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
         self.icon = "./assets/imagens/icone-dourado.ico"
 
-    def build(self):
+    def build(self) -> Builder.load_file:
         return Builder.load_file("./interface.kv")
-
 
 
 if __name__ == "__main__":

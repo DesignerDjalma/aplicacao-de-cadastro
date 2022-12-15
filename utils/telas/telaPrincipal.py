@@ -2,46 +2,72 @@ from kivy.uix.screenmanager import Screen
 from kivymd.app import MDApp
 import string
 
-class TelaPrincipal(Screen):
+def validaCaracteres(palavra: str) -> bool:
+    for l in palavra:
+        if l in [i for i in string.punctuation]:
+            return False
+    return True
 
-    _senhaValida = None
-    _usuarioValido = None
+class TelaPrincipal(Screen):
+    
+    _senhaValid = False 
+    _usuarioValid = False
 
     def validacaoOk(self):
         self.app = MDApp.get_running_app()
         self.app.root.current = "tela_logado"
         self.app.root.transition.direction = "left"
     
+    def validarDados(self):
+        self._senhaValid = False
+        self._usuarioValid = False
+        self.validarUsuario()
+        self.validarSenha()
+        
+        if self._usuarioValid and self._senhaValid:
+            self.validacaoOk()
+
+
     def validarUsuario(self):
-        def validaCaracteres(palavra: str) -> bool:
-            for l in palavra:
-                if l in [i for i in string.punctuation]:
-                    return False
-            return True
+        _usuario_valid = True  # usuarioValido
 
-        _uV = True  # usuarioValido
-        _uTxtE = self.ids.usuarioTextoErro.text
-        _uI = self.ids.usuarioInput.text
-        
+        if self.ids.usuarioInput.text == "":
+            self.ids.usuarioTextoErro.text = "[i]Forneça uma senha válida[/i]"
+            _usuario_valid = False
+        else:
+            if not validaCaracteres(self.ids.usuarioInput.text):
+                self.ids.usuarioTextoErro.text = "[i]Caracteres especiais não são permitidos[/i]"
+                _usuario_valid = False
+            else:
+                if 3 >= len(self.ids.usuarioInput.text) >= 1:
+                    self.ids.usuarioTextoErro.text = "[i]O nome de usuário deve ter pelo menos 4 caracteres[/i]"
+                    _usuario_valid = False
+                
+                if 20 < len(self.ids.usuarioInput.text):
+                    self.ids.usuarioTextoErro.text = "[i]O nome de usuário deve ter no máximo 20 caracteres[/i]"
+                    _usuario_valid = False
 
-        if not validaCaracteres(_uI):
-            _uTxtE = "[i]Caracteres especiais não são permitidos[/i]"
-            _uV = False
-
-        if _uI == "":
-            _uTxtE = "[i]Forneça um usuário válido[/i]"
-            _uV = False
-
-        if 5 > len(_uI) > 1:
-            _uTxtE = "[i]O nome de usuário deve ter pelo menos 4 letras[/i]"
-            _uV = False
-
-        if _uV:
-            _uTxtE = ""
+        # Validacao Final
+        if _usuario_valid:
+            self.ids.usuarioTextoErro.text = ""
+            self._usuarioValid = True
             
-
     def validarSenha(self):
+        _senha_valid = True
+
         if self.ids.senhaInput.text == "":
-            self.ids.senhaTextoErro.text = "[i]Forneça um usuário válido[/i]"
+            self.ids.senhaTextoErro.text = "[i]Forneça uma senha válida[/i]"
+            _senha_valid = False
+        else:
+            if 7 >= len(self.ids.senhaInput.text) >= 1:
+                self.ids.senhaTextoErro.text = "[i]A senha deve ter pelo menos 8 caracteres[/i]"
+                _senha_valid = False
             
-        
+            if 20 < len(self.ids.senhaInput.text):
+                self.ids.senhaTextoErro.text = "[i]A senha deve ter no máximo 32 caracteres[/i]"
+                _senha_valid = False
+
+        # Validacao Final
+        if _senha_valid:
+            self.ids.senhaTextoErro.text = ""
+            self._senhaValid = True

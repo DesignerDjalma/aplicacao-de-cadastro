@@ -5,7 +5,7 @@ ScreenManager:
     TelaLogado:
     TelaEsqueceuSenha:
 
-
+ 
 <MinhaTopBar>:
     title: "Meu Aplicativo"
     right_action_items: [["logout", lambda x: root.funcaoLogout(x)]]
@@ -97,6 +97,7 @@ ScreenManager:
                     mode: "rectangle"
                     hint_text: "Usuário"
                     id: usuarioInput
+                    
                 # TEXTO EM BAIXO DO USUARIO
                 Separador:
                     height: 7
@@ -111,11 +112,13 @@ ScreenManager:
                     mode: "rectangle"  
                     hint_text: "Senha"
                     password: True
+                    id: senhaInput
+                    
                 # TEXTO EM BAIXO DA SENHA
                 Separador:
                     height: 7
                 TextoErro:
-                    text: "[i]Forneça uma senha válida[/i]"
+                    text: ""
                     id: senhaTextoErro
                 Separador:
                     height: 8
@@ -128,7 +131,7 @@ ScreenManager:
                     BotaoPadrao:
                         pos_hint: {"center_x": .25, "center_y": .5}
                         text: "     Login     "
-                        on_release: root.validarUsuario()
+                        on_release: root.validarDados()
 
                     
                     BotaoPadrao:

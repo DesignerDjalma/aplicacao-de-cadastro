@@ -50,7 +50,10 @@ class Usuario:
 
 if __name__ == "__main__":
     a = Usuario()
-    a.logarUsuario({'username':'Djalma Filho'})
+    
+    # a.logarUsuario(
+    #     {'username':'Djalma Filho'}
+    #     )
     
 
 

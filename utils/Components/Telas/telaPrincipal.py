@@ -15,8 +15,14 @@ class TelaPrincipal(Screen):
 
     def validacaoOk(self):
         self.app = MDApp.get_running_app()
-        self.app.root.current = "tela_logado"
-        self.app.root.transition.direction = "left"
+        if self.app.logarUsuario({
+            'username':self.ids.usuarioInput.text,
+            'password':self.ids.senhaInput.text,
+            }):
+            self.app.root.current = "tela_logado"
+            self.app.root.transition.direction = "left"
+        else:
+            self.ids.usuarioTextoErro.text = "[i]Usuario não encontrado.[/i]"
     
     def validarDados(self):
         self._senhaValid = False

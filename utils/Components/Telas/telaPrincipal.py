@@ -80,3 +80,7 @@ class TelaPrincipal(Screen):
             print(self.ids.senhaTextoErro.text)
             self._senhaValid = True
             print("self._senhaValid = True")
+
+
+    def loginUser(self):
+        

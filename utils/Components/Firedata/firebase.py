@@ -23,6 +23,13 @@ class Usuario:
         self.referencia = db.reference('py/')
         self.referencia_usuarios = self.referencia.child('usuarios')
     
+    def listarUsuarios(self):
+        self.dicionario_user = self.referencia_usuarios.get()
+
+    def isUsuarioCadastrado(self):
+        for k,v in self.dicionario_user.items():
+            print("oi")
+
     def cadastrarUsuario(self, dodosUsuario: dict) -> None:
         print(f"Dados: {dodosUsuario}")
         print("Cadastrando usuário...")
@@ -30,9 +37,11 @@ class Usuario:
         print("Usuario cadastrado com sucesso!")
 
 if __name__ == "__main__":
-    pass
+    a = Usuario()
+    a.isUsuarioCadastrado()
     
 
 
-
+{
+    '-NJJUc9Zty5-Vr4QvPSg': {'email': 'djalma@gmail.com', 'password': 'Djalm@123456789', 'username': 'djalma '}, '-NJJVdS3QV4yQRlkAIDe': {'email': 'mary@gmail.com', 'password': 'Djalm@123456789', 'username': 'Mary Lee'}, '-NJJc_xQJRaS45egUsKZ': {'email': 'email@email.com.br', 'password': '22222222Dd3@', 'username': 'Jéssica Matos'}}
 

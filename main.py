@@ -27,7 +27,6 @@ class MeuAplicativoApp(MDApp):
     def cadastrarUsuario(dodosUsuario: dict) -> None:
         users.cadastrarUsuario(dodosUsuario)
     
-    
     def logarUsuario(self, loginInfo: dict) -> None:
         return users.logarUsuario(loginInfo)
             

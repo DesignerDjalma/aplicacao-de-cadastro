@@ -1,8 +1,6 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
-import getpass
-
 
 class BancoDeDados:
     def setdb(self):
@@ -11,7 +9,6 @@ class BancoDeDados:
             "username":"username_usuario",
             "password":"senha_usuario",
             })
-
 
 class Usuario:
     def __init__(self) -> None:
@@ -23,12 +20,17 @@ class Usuario:
         self.referencia = db.reference('py/')
         self.referencia_usuarios = self.referencia.child('usuarios')
     
-    def listarUsuarios(self):
-        self.dicionario_user = self.referencia_usuarios.get()
+    def listarUsuarios(self) -> dict:
+        self.dicionario_users = self.referencia_usuarios.get()
+        return self.dicionario_users
 
-    def isUsuarioCadastrado(self):
-        for k,v in self.dicionario_user.items():
-            print("oi")
+    def isUsuarioCadastrado(self, loginInfo: dict) -> bool:
+        _dados = self.listarUsuarios()
+        _all_users = [_dados[i]['username'] for i in _dados]
+        if loginInfo['username'] in _all_users:
+            return True
+        else:
+            return False
 
     def cadastrarUsuario(self, dodosUsuario: dict) -> None:
         print(f"Dados: {dodosUsuario}")
@@ -36,12 +38,22 @@ class Usuario:
         self.referencia_usuarios.push(dodosUsuario)
         print("Usuario cadastrado com sucesso!")
 
+    def logarUsuario(self, loginInfo: dict) -> bool:
+        if self.isUsuarioCadastrado(loginInfo):
+            print("Usuario Existe")
+            return True
+        else:
+            print("Usuario NÃO existe")
+            return False
+
+
+
 if __name__ == "__main__":
     a = Usuario()
-    a.isUsuarioCadastrado()
+    a.logarUsuario({'username':'Djalma Filho'})
     
 
 
-{
-    '-NJJUc9Zty5-Vr4QvPSg': {'email': 'djalma@gmail.com', 'password': 'Djalm@123456789', 'username': 'djalma '}, '-NJJVdS3QV4yQRlkAIDe': {'email': 'mary@gmail.com', 'password': 'Djalm@123456789', 'username': 'Mary Lee'}, '-NJJc_xQJRaS45egUsKZ': {'email': 'email@email.com.br', 'password': '22222222Dd3@', 'username': 'Jéssica Matos'}}
+# {
+#     '-NJJUc9Zty5-Vr4QvPSg': {'email': 'djalma@gmail.com', 'password': 'Djalm@123456789', 'username': 'djalma '}, '-NJJVdS3QV4yQRlkAIDe': {'email': 'mary@gmail.com', 'password': 'Djalm@123456789', 'username': 'Mary Lee'}, '-NJJc_xQJRaS45egUsKZ': {'email': 'email@email.com.br', 'password': '22222222Dd3@', 'username': 'Jéssica Matos'}}
 

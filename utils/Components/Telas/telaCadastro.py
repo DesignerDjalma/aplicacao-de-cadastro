@@ -15,20 +15,39 @@ class TelaCadastro(Screen):
     _emailValid = False
     _verificarSenha = False
 
+    def irParaTela(self, tela: str, direcao: str) -> None:
+        self.app = MDApp.get_running_app()
+        self.app.root.current = tela
+        self.app.root.transition.direction = direcao
+
+    def limparTudo(self) -> None:
+        self.ids.emailInputReg.text = ""
+        self.ids.emailTextoErroReg.text = ""
+        self.ids.senhaCheckInputReg.text = ""
+        self.ids.senhaCheckTextoErroReg.text = ""
+        self.ids.usuarioInputReg.text = ""
+        self.ids.usuarioTextoErroReg.text = ""
+        self.ids.senhaInputReg.text = ""
+        self.ids.senhaTextoErroReg.text = ""
+
+
     def enviarDados(self, app):
         userData = {
             'username':self.ids.usuarioInputReg.text,
             'password':self.ids.senhaInputReg.text,
             'email':self.ids.emailInputReg.text,
         }
-        app.cadastrarUsuario(dodosUsuario=userData)
+        app.cadastrarUsuario(
+            dodosUsuario=userData
+            )
 
     def validacaoOk(self):
         print("Validação Okay")
-        self.app = MDApp.get_running_app()
-        self.enviarDados(self.app)
-        self.app.root.current = "tela_cadastro_sucesso"
-        self.app.root.transition.direction = "left" 
+        self.enviarDados(MDApp.get_running_app())
+        self.limparTudo()
+        self.irParaTela(direcao="left",
+            tela="tela_cadastro_sucesso")
+
 
     def validarDados(self):
         self._senhaCheckValid = False
@@ -140,3 +159,9 @@ class TelaCadastro(Screen):
             print(self.ids.senhaTextoErroReg.text)
             self._senhaValid = True
             print("self._senhaValid = True")
+
+    def irParaTelaPrincipal(self) -> None:
+        self.limparTudo()
+        self.irParaTela(direcao="right",
+            tela="tela_principal")
+        

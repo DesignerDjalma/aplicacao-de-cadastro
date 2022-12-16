@@ -23,8 +23,7 @@ class MeuAplicativoApp(MDApp):
     def build(self) -> Builder.load_file:
         return Builder.load_file("./interface.kv")
 
-    @staticmethod
-    def cadastrarUsuario(dodosUsuario: dict) -> None:
+    def cadastrarUsuario(self, dodosUsuario: dict) -> None:
         users.cadastrarUsuario(dodosUsuario)
     
     def logarUsuario(self, loginInfo: dict) -> None:

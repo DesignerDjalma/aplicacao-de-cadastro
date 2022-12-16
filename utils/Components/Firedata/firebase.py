@@ -1,7 +1,7 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
-
+from getpass import getuser
 class BancoDeDados:
     def setdb(self):
         self.referencia_usuarios.set({
@@ -15,22 +15,29 @@ class Usuario:
         self.iniciar()
 
     def iniciar(self) -> None:
-        self.cred = credentials.Certificate(R"D:\appcadastroServiceAccountKey.json")
+        if getuser() == "djalmaf":
+            self.cred = credentials.Certificate("/home/djalmaf/serviceAccountKey.json")
+        else:
+            self.cred = credentials.Certificate(R"D:\appcadastroServiceAccountKey.json")
+
         firebase_admin.initialize_app(self.cred, {"databaseURL":"https://appcadastro-72250-default-rtdb.firebaseio.com/"})
         self.referencia = db.reference('py/')
         self.referencia_usuarios = self.referencia.child('usuarios')
     
-    def listarUsuarios(self) -> dict:
+    def listarDadosOnline(self) -> dict:
         self.dicionario_users = self.referencia_usuarios.get()
         return self.dicionario_users
 
-    def isUsuarioCadastrado(self, loginInfo: dict) -> bool:
-        _dados = self.listarUsuarios()
-        _all_users = [_dados[i]['username'] for i in _dados]
-        if loginInfo['username'] in _all_users:
-            return True
-        else:
-            return False
+    def isUsuarioCadastradoComSenhaCorreta(self, loginInfo: dict) -> bool:
+        _dados = self.listarDadosOnline()
+
+        for _id,_ in _dados.items():
+            if _dados[_id]['username'] == loginInfo['username']:
+                if _dados[_id]['password'] == loginInfo['password']:
+                    return 'autorizado'
+                else:
+                    return 'senha_incorreta'
+        return 'usuario_nao_encontrado'
 
     def cadastrarUsuario(self, dodosUsuario: dict) -> None:
         print(f"Dados: {dodosUsuario}")
@@ -39,17 +46,21 @@ class Usuario:
         print("Usuario cadastrado com sucesso!")
 
     def logarUsuario(self, loginInfo: dict) -> bool:
-        if self.isUsuarioCadastrado(loginInfo):
+        reposta = self.isUsuarioCadastradoComSenhaCorreta(loginInfo)
+        if reposta != 'usuario_nao_encontrado':
             print("Usuario Existe")
-            return True
         else:
-            print("Usuario NÃO existe")
-            return False
+            print("Usuário Não existe")
+        return reposta
 
 
 
 if __name__ == "__main__":
     a = Usuario()
+    a.logarUsuario({
+        'username':'Djalma Filho',
+        'password':'Djalma@12345678',
+        })
     
     # a.logarUsuario(
     #     {'username':'Djalma Filho'}

@@ -66,16 +66,15 @@ ScreenManager:
         theme_text_color: "Custom"
         text_color: 0, 0, 1, 1
         pos_hint: {"center_x": .5, "center_y": .4}
-        on_release:
-            app.root.current = "tela_esqueceu_senha"
-            app.root.transition.direction = "left"
+        on_release: root.irParaTelaEsqueceuSenha()
  
     MDLabel:
         pos_hint: {"center_x": .5, "center_y": .05}
-        text:'Criado por: Djalma Filho @3Djhey'
+        text:'Criado por: Djalma Filho\n@3Djhey'
+        font_size: "14sp"
         theme_text_color: "Custom"
         halign: "center"
-        text_color: 0, 0, 0, 0.25
+        text_color: 0, 0, 0, 0.4
 
     MDBoxLayout:
         orientation: "vertical"
@@ -148,9 +147,8 @@ ScreenManager:
                     BotaoPadrao:
                         pos_hint: {"center_x": .75, "center_y": .5}
                         text: "Registra-se"
-                        on_release:
-                            app.root.current = "tela_cadastro"
-                            app.root.transition.direction = "left"
+                        on_release: root.irParaTelaCadastro()
+
 
         MDLabel:     
         
@@ -248,9 +246,8 @@ ScreenManager:
                     BotaoPadrao:
                         pos_hint: {"center_x": .25, "center_y": .5}
                         text: "     Voltar     "
-                        on_release:
-                            app.root.current = "tela_principal"           
-                            app.root.transition.direction = "right"
+                        on_release: root.irParaTelaPrincipal()
+                            
 
                     BotaoPadrao:
                         pos_hint: {"center_x": .75, "center_y": .5}

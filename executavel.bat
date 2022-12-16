@@ -1,0 +1,1 @@
+C:/Users/dflfilho/AppData/Local/Programs/Python/Python310/python.exe "C:\Users\dflfilho\Documents\_REPOSITORIOS\aplicacao-de-cadastro\main.py"

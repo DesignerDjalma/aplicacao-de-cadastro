@@ -31,7 +31,6 @@ class MeuAplicativoApp(MDApp):
             
 
 
-
 if __name__ == "__main__":
     users = Usuario()
     MeuAplicativoApp().run()

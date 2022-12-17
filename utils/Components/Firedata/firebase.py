@@ -2,6 +2,7 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
 from getpass import getuser
+
 class BancoDeDados:
     def setdb(self):
         self.referencia_usuarios.set({
